@@ -1,0 +1,206 @@
+<div>
+  <div>
+    <h1>
+      Trip #<%= @the_trip.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/trips">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_trip/<%= @the_trip.id %>">
+          Delete trip
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <%= @the_trip.owner_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_trip.description %>
+      </dd>
+
+      <dt>
+        Companion
+      </dt>
+      <dd>
+        <%= @the_trip.companion_id %>
+      </dd>
+
+      <dt>
+        Arrival date
+      </dt>
+      <dd>
+        <%= @the_trip.arrival_date %>
+      </dd>
+
+      <dt>
+        Departure date
+      </dt>
+      <dd>
+        <%= @the_trip.departure_date %>
+      </dd>
+
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_trip.title %>
+      </dd>
+
+      <dt>
+        Comment
+      </dt>
+      <dd>
+        <%= @the_trip.comment_id %>
+      </dd>
+
+      <dt>
+        Comments
+      </dt>
+      <dd>
+        <%= @the_trip.comments %>
+      </dd>
+
+      <dt>
+        Activity
+      </dt>
+      <dd>
+        <%= @the_trip.activity_id %>
+      </dd>
+
+      <dt>
+        Published
+      </dt>
+      <dd>
+        <%= @the_trip.published %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit trip
+    </h2>
+
+    <form action="/modify_trip/<%= @the_trip.id %>"  method="post" >
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_trip.owner_id %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_trip.description %></textarea>
+      </div>
+
+      <div>
+        <label for="companion_id_box">
+          Companion
+        </label>
+
+        <input type="text" id="companion_id_box" name="query_companion_id" value="<%= @the_trip.companion_id %>">
+      </div>
+
+      <div>
+        <label for="arrival_date_box">
+          Arrival date
+        </label>
+
+        <input type="date" id="arrival_date_box" name="query_arrival_date" value="<%= @the_trip.arrival_date %>">
+      </div>
+
+      <div>
+        <label for="departure_date_box">
+          Departure date
+        </label>
+
+        <input type="date" id="departure_date_box" name="query_departure_date" value="<%= @the_trip.departure_date %>">
+      </div>
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_trip.title %>">
+      </div>
+
+      <div>
+        <label for="comment_id_box">
+          Comment
+        </label>
+
+        <input type="text" id="comment_id_box" name="query_comment_id" value="<%= @the_trip.comment_id %>">
+      </div>
+
+      <div>
+        <label for="comments_box">
+          Comments
+        </label>
+
+        <textarea id="comments_box" name="query_comments"><%= @the_trip.comments %></textarea>
+      </div>
+
+      <div>
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <input type="text" id="activity_id_box" name="query_activity_id" value="<%= @the_trip.activity_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="published_box" name="query_published" value="1" <%= "checked" if @the_trip.published %>>
+
+        <label for="published_box">
+            Published
+        </label>
+      </div>
+
+      <button>
+        Update trip
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

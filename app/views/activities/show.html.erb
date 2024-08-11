@@ -1,0 +1,148 @@
+<div>
+  <div>
+    <h1>
+      Activity #<%= @the_activity.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/activities">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_activity/<%= @the_activity.id %>">
+          Delete activity
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Activity name
+      </dt>
+      <dd>
+        <%= @the_activity.activity_name %>
+      </dd>
+
+      <dt>
+        Activity description
+      </dt>
+      <dd>
+        <%= @the_activity.activity_description %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @the_activity.location %>
+      </dd>
+
+      <dt>
+        Day start time
+      </dt>
+      <dd>
+        <%= @the_activity.day_start_time %>
+      </dd>
+
+      <dt>
+        Day end time
+      </dt>
+      <dd>
+        <%= @the_activity.day_end_time %>
+      </dd>
+
+      <dt>
+        Trip
+      </dt>
+      <dd>
+        <%= @the_activity.trip_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_activity.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_activity.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit activity
+    </h2>
+
+    <form action="/modify_activity/<%= @the_activity.id %>"  method="post" >
+      <div>
+        <label for="activity_name_box">
+          Activity name
+        </label>
+
+        <input type="text" id="activity_name_box" name="query_activity_name" value="<%= @the_activity.activity_name %>">
+      </div>
+
+      <div>
+        <label for="activity_description_box">
+          Activity description
+        </label>
+
+        <textarea id="activity_description_box" name="query_activity_description"><%= @the_activity.activity_description %></textarea>
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" value="<%= @the_activity.location %>">
+      </div>
+
+      <div>
+        <label for="day_start_time_box">
+          Day start time
+        </label>
+
+        <input type="datetime-local" id="day_start_time_box" name="query_day_start_time"
+         value="<%= @the_activity.day_start_time %>">
+      </div>
+
+      <div>
+        <label for="day_end_time_box">
+          Day end time
+        </label>
+
+        <input type="datetime-local" id="day_end_time_box" name="query_day_end_time"
+         value="<%= @the_activity.day_end_time %>">
+      </div>
+
+      <div>
+        <label for="trip_id_box">
+          Trip
+        </label>
+
+        <input type="text" id="trip_id_box" name="query_trip_id" value="<%= @the_activity.trip_id %>">
+      </div>
+
+      <button>
+        Update activity
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

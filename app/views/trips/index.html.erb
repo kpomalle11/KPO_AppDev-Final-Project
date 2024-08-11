@@ -1,0 +1,228 @@
+<div>
+  <div>
+    <h1>
+      List of all trips
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new trip
+    </h2>
+
+    <form action="/insert_trip" method="post">
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="companion_id_box">
+          Companion
+        </label>
+
+        <input type="text" id="companion_id_box" name="query_companion_id">
+      </div>
+
+      <div>
+        <label for="arrival_date_box">
+          Arrival date
+        </label>
+
+        <input type="date" id="arrival_date_box" name="query_arrival_date">
+      </div>
+
+      <div>
+        <label for="departure_date_box">
+          Departure date
+        </label>
+
+        <input type="date" id="departure_date_box" name="query_departure_date">
+      </div>
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="comment_id_box">
+          Comment
+        </label>
+
+        <input type="text" id="comment_id_box" name="query_comment_id">
+      </div>
+
+      <div>
+        <label for="comments_box">
+          Comments
+        </label>
+
+        <textarea id="comments_box" name="query_comments" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="activity_id_box">
+          Activity
+        </label>
+
+        <input type="text" id="activity_id_box" name="query_activity_id">
+      </div>
+
+      <div>
+        <input type="checkbox" id="published_box" name="query_published" value="1">
+
+        <label for="published_box">Published</label>
+      </div>
+
+      <button>
+        Create trip
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Companion
+        </th>
+
+        <th>
+          Arrival date
+        </th>
+
+        <th>
+          Departure date
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Comment
+        </th>
+
+        <th>
+          Comments
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Published
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_trips.each do |a_trip| %>
+      <tr>
+        <td>
+          <%= a_trip.id %>
+        </td>
+
+        <td>
+          <%= a_trip.owner_id %>
+        </td>
+
+        <td>
+          <%= a_trip.description %>
+        </td>
+
+        <td>
+          <%= a_trip.companion_id %>
+        </td>
+
+        <td>
+          <%= a_trip.arrival_date %>
+        </td>
+
+        <td>
+          <%= a_trip.departure_date %>
+        </td>
+
+        <td>
+          <%= a_trip.title %>
+        </td>
+
+        <td>
+          <%= a_trip.comment_id %>
+        </td>
+
+        <td>
+          <%= a_trip.comments %>
+        </td>
+
+        <td>
+          <%= a_trip.activity_id %>
+        </td>
+
+        <td>
+          <%= a_trip.published %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_trip.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_trip.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/trips/<%= a_trip.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
