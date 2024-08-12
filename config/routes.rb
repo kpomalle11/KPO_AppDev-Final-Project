@@ -2,6 +2,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  post '/insert_trip', to: 'trips#create'
+  post '/ask_chatgpt', to: 'trips#ask_chatgpt'
+
   #homepage
 
   root to: "trips#index"

@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  require 'openai'
+
   def index
     matching_trips = Trip.all
 
@@ -35,6 +37,44 @@ class TripsController < ApplicationController
     end
   end
 
+  def ask_chatgpt
+    trip_params = {
+      owner_id: params[:query_owner_id],
+      description: params[:query_description],
+      arrival_date: params[:query_arrival_date],
+      departure_date: params[:query_departure_date],
+      title: params[:query_title],
+      activity_id: params[:query_activity_id],
+      published: params[:query_published].present?,
+    }
+
+    client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
+
+    message_list = [
+      {
+        "role" => "system",
+        "content" => "You are a helpful travel assistant helping the users plan a trip according to their message.  It would be help to suggest activities to do, places to stay, restaurants to go to, and other cool things based on the specific location or surrounding area.  Essentially, build out a trip itinerary for the user based on the message context.",
+      },
+      {
+        "role" => "user",
+        "content" => "I am planning a trip with the following details: #{trip_params}. Please provide suggestions and advice.",
+      },
+    ]
+
+    response = client.chat(
+      parameters: {
+        model: "gpt-4",
+        messages: message_list,
+        max_tokens: 150,
+      },
+    )
+
+    @chatgpt_response = response.dig("choices", 0, "message", "content")
+
+    # You can either render this on a new page or show it in the current view.
+    render plain: @chatgpt_response
+  end
+
   def update
     the_id = params.fetch("path_id")
     the_trip = Trip.where({ :id => the_id }).at(0)
@@ -49,7 +89,7 @@ class TripsController < ApplicationController
 
     if the_trip.valid?
       the_trip.save
-      redirect_to("/trips/#{the_trip.id}", { :notice => "Trip updated successfully."} )
+      redirect_to("/trips/#{the_trip.id}", { :notice => "Trip updated successfully." })
     else
       redirect_to("/trips/#{the_trip.id}", { :alert => the_trip.errors.full_messages.to_sentence })
     end
@@ -61,6 +101,6 @@ class TripsController < ApplicationController
 
     the_trip.destroy
 
-    redirect_to("/trips", { :notice => "Trip deleted successfully."} )
+    redirect_to("/trips", { :notice => "Trip deleted successfully." })
   end
 end

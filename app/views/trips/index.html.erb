@@ -14,66 +14,45 @@
       Add a new trip
     </h2>
 
-    <form action="/insert_trip" method="post">
+    <%= form_with url: insert_trip_path, method: :post, id: "trip_form" do %>
       <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
+        <label for="owner_id_box">Owner</label>
+        <%= text_field_tag :query_owner_id, nil, id: "owner_id_box" %>
       </div>
 
       <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea id="description_box" name="query_description" rows="3"></textarea>
-      </div>
-
-
-      <div>
-        <label for="arrival_date_box">
-          Arrival date
-        </label>
-
-        <input type="date" id="arrival_date_box" name="query_arrival_date">
+        <label for="description_box">Description</label>
+        <%= text_area_tag :query_description, nil, id: "description_box", rows: 3 %>
       </div>
 
       <div>
-        <label for="departure_date_box">
-          Departure date
-        </label>
-
-        <input type="date" id="departure_date_box" name="query_departure_date">
+        <label for="arrival_date_box">Arrival date</label>
+        <%= date_field_tag :query_arrival_date, nil, id: "arrival_date_box" %>
       </div>
 
       <div>
-        <label for="title_box">
-          Title
-        </label>
-
-        <input type="text" id="title_box" name="query_title">
+        <label for="departure_date_box">Departure date</label>
+        <%= date_field_tag :query_departure_date, nil, id: "departure_date_box" %>
       </div>
 
       <div>
-        <label for="activity_id_box">
-          Activity
-        </label>
-
-        <input type="text" id="activity_id_box" name="query_activity_id">
+        <label for="title_box">Title</label>
+        <%= text_field_tag :query_title, nil, id: "title_box" %>
       </div>
 
       <div>
-        <input type="checkbox" id="published_box" name="query_published" value="1">
+        <label for="activity_id_box">Activity</label>
+        <%= text_field_tag :query_activity_id, nil, id: "activity_id_box" %>
+      </div>
 
+      <div>
+        <%= check_box_tag :query_published, 1, false, id: "published_box" %>
         <label for="published_box">Published</label>
       </div>
 
-      <button>
-        Create trip
-      </button>
-    </form>
+      <%= submit_tag "Create trip", name: "commit" %>
+      <%= submit_tag "Ask ChatGPT to plan", name: "commit", formaction: ask_chatgpt_path %>
+    <% end %>
   </div>
 </div>
 
@@ -127,52 +106,52 @@
       </tr>
 
       <% @list_of_trips.each do |a_trip| %>
-      <tr>
-        <td>
-          <%= a_trip.id %>
-        </td>
+        <tr>
+          <td>
+            <%= a_trip.id %>
+          </td>
 
-        <td>
-          <%= a_trip.owner_id %>
-        </td>
+          <td>
+            <%= a_trip.owner_id %>
+          </td>
 
-        <td>
-          <%= a_trip.description %>
-        </td>
+          <td>
+            <%= a_trip.description %>
+          </td>
 
-        <td>
-          <%= a_trip.arrival_date %>
-        </td>
+          <td>
+            <%= a_trip.arrival_date %>
+          </td>
 
-        <td>
-          <%= a_trip.departure_date %>
-        </td>
+          <td>
+            <%= a_trip.departure_date %>
+          </td>
 
-        <td>
-          <%= a_trip.title %>
-        </td>
+          <td>
+            <%= a_trip.title %>
+          </td>
 
-        <td>
-          <%= a_trip.activity_id %>
-        </td>
+          <td>
+            <%= a_trip.activity_id %>
+          </td>
 
-        <td>
-          <%= a_trip.published %>
-        </td>
+          <td>
+            <%= a_trip.published %>
+          </td>
 
-        <td>
-          <%= time_ago_in_words(a_trip.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_trip.updated_at) %> ago
-        </td>
+          <td>
+            <%= time_ago_in_words(a_trip.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(a_trip.updated_at) %> ago
+          </td>
 
-        <td>
-          <a href="/trips/<%= a_trip.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
+          <td>
+            <a href="/trips/<%= a_trip.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
       <% end %>
     </table>
   </div>
