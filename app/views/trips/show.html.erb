@@ -34,13 +34,6 @@
       </dd>
 
       <dt>
-        Companion
-      </dt>
-      <dd>
-        <%= @the_trip.companion_id %>
-      </dd>
-
-      <dt>
         Arrival date
       </dt>
       <dd>
@@ -59,20 +52,6 @@
       </dt>
       <dd>
         <%= @the_trip.title %>
-      </dd>
-
-      <dt>
-        Comment
-      </dt>
-      <dd>
-        <%= @the_trip.comment_id %>
-      </dd>
-
-      <dt>
-        Comments
-      </dt>
-      <dd>
-        <%= @the_trip.comments %>
       </dd>
 
       <dt>
@@ -133,14 +112,6 @@
       </div>
 
       <div>
-        <label for="companion_id_box">
-          Companion
-        </label>
-
-        <input type="text" id="companion_id_box" name="query_companion_id" value="<%= @the_trip.companion_id %>">
-      </div>
-
-      <div>
         <label for="arrival_date_box">
           Arrival date
         </label>
@@ -162,22 +133,6 @@
         </label>
 
         <input type="text" id="title_box" name="query_title" value="<%= @the_trip.title %>">
-      </div>
-
-      <div>
-        <label for="comment_id_box">
-          Comment
-        </label>
-
-        <input type="text" id="comment_id_box" name="query_comment_id" value="<%= @the_trip.comment_id %>">
-      </div>
-
-      <div>
-        <label for="comments_box">
-          Comments
-        </label>
-
-        <textarea id="comments_box" name="query_comments"><%= @the_trip.comments %></textarea>
       </div>
 
       <div>
@@ -204,3 +159,53 @@
 </div>
 
 <hr>
+
+<h2>Comments</h2>
+
+<table>
+  <tr>
+    <th>
+      Commenter
+    </th>
+
+    <th>
+      Comment
+    </th>
+
+    <th>
+      Posted
+    </th>
+  </tr>
+
+  <% @the_trip.trip_comments.order(created_at: :desc).each do |a_comment| %>
+
+    <tr>
+      <td>
+        <%= a_comment.user.id %>
+      </td>
+
+      <td>
+        <%= a_comment.content %>
+      </td>
+
+      <td>
+        <%= a_comment.created_at %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment" method="post">
+  <label for="browser_trip_id">Trip ID</label>
+  <input id="browser_trip_id" type=text placeholder="Enter the Trip ID" name="input_trip_id" value=<%= @the_trip.id %>>
+
+  <label for="browser_owner_id">Owner ID</label>
+  <input id="browser_owner_id" type=text placeholder="Enter your owner ID" name="input_owner_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" type=text placeholder="Enter a comment..." name="input_comment"></textarea>
+
+  <button>Add comment</button>
+</form>

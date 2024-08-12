@@ -18,6 +18,11 @@
 #
 class User < ApplicationRecord
   validates(:email, uniqueness: true)
+
+  has_many  :posts, class_name: "Trip", foreign_key: "owner_id", dependent: :destroy
+
+  has_many  :user_comments, class_name: "Comment", foreign_key: "user_id", dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
