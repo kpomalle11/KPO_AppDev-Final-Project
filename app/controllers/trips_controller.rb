@@ -21,12 +21,9 @@ class TripsController < ApplicationController
     the_trip = Trip.new
     the_trip.owner_id = params.fetch("query_owner_id")
     the_trip.description = params.fetch("query_description")
-    the_trip.companion_id = params.fetch("query_companion_id")
     the_trip.arrival_date = params.fetch("query_arrival_date")
     the_trip.departure_date = params.fetch("query_departure_date")
     the_trip.title = params.fetch("query_title")
-    the_trip.comment_id = params.fetch("query_comment_id")
-    the_trip.comments = params.fetch("query_comments")
     the_trip.activity_id = params.fetch("query_activity_id")
     the_trip.published = params.fetch("query_published", false)
 
@@ -44,12 +41,9 @@ class TripsController < ApplicationController
 
     the_trip.owner_id = params.fetch("query_owner_id")
     the_trip.description = params.fetch("query_description")
-    the_trip.companion_id = params.fetch("query_companion_id")
     the_trip.arrival_date = params.fetch("query_arrival_date")
     the_trip.departure_date = params.fetch("query_departure_date")
     the_trip.title = params.fetch("query_title")
-    the_trip.comment_id = params.fetch("query_comment_id")
-    the_trip.comments = params.fetch("query_comments")
     the_trip.activity_id = params.fetch("query_activity_id")
     the_trip.published = params.fetch("query_published", false)
 
