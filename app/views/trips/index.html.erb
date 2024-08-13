@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all trips
+      Trip Feed
     </h1>
   </div>
 </div>
@@ -52,6 +52,7 @@
 
       <%= submit_tag "Create trip", name: "commit" %>
       <%= submit_tag "Ask ChatGPT to plan", name: "commit", formaction: ask_chatgpt_path %>
+      <%= link_to "Clear Inputs", clear_trip_form_path, class: "button" %>
     <% end %>
   </div>
 </div>

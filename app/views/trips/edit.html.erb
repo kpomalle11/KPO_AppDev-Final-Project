@@ -1,0 +1,40 @@
+<h2>Edit Trip</h2>
+
+<%= form_with model: @trip, url: modify_trip_path(@trip.id), method: :post do |f| %>
+  <div>
+    <label for="owner_id_box">Owner</label>
+    <%= f.text_field :owner_id, id: "owner_id_box" %>
+  </div>
+
+  <div>
+    <label for="description_box">Description</label>
+    <%= f.text_area :description, id: "description_box", rows: 3 %>
+  </div>
+
+  <div>
+    <label for="arrival_date_box">Arrival date</label>
+    <%= f.date_field :arrival_date, id: "arrival_date_box" %>
+  </div>
+
+  <div>
+    <label for="departure_date_box">Departure date</label>
+    <%= f.date_field :departure_date, id: "departure_date_box" %>
+  </div>
+
+  <div>
+    <label for="title_box">Title</label>
+    <%= f.text_field :title, id: "title_box" %>
+  </div>
+
+  <div>
+    <label for="activity_id_box">Activity</label>
+    <%= f.text_field :activity_id, id: "activity_id_box" %>
+  </div>
+
+  <div>
+    <%= f.check_box :published, id: "published_box" %>
+    <label for="published_box">Published</label>
+  </div>
+
+  <%= f.submit "Update Trip" %>
+<% end %>
