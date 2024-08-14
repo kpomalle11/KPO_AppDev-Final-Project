@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   post "/insert_trip", to: "trips#create"
   post "/ask_chatgpt", to: "trips#ask_chatgpt"
