@@ -25,9 +25,9 @@ class CommentsController < ApplicationController
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/trips/#{the_comment.id}", { :notice => "Comment created successfully." })
+      redirect_to("/trips/#{the_comment.trip_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/trips/#{the_comment.id}", { :alert => the_comment.errors.full_messages.to_sentence })
+      redirect_to("/trips/#{the_comment.trip_id}", { :alert => the_comment.errors.full_messages.to_sentence })
     end
   end
 
