@@ -166,7 +166,7 @@
 
 <h2>Comments</h2>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>
       Commenter
@@ -185,7 +185,7 @@
 
     <tr>
       <td>
-        <%= a_comment.user.id %>
+        <%= a_comment.id %>
       </td>
 
       <td>
@@ -202,8 +202,8 @@
 <h3>Add a new comment</h3>
 
 <form action="/insert_comment" method="post">
-  <label for="browser_trip_id">Trip ID</label>
-  <input id="browser_trip_id" type=text placeholder="Enter the Trip ID" name="input_trip_id" value=<%= @the_trip.id %>>
+  <label for="browser_trip_id"></label>
+  <input id="browser_trip_id" type=hidden placeholder="Enter the Trip ID" name="input_trip_id" value=<%= @the_trip.id %>>
 
   <label for="browser_owner_id">Owner ID</label>
   <input id="browser_owner_id" type=text placeholder="Enter your owner ID" name="input_owner_id">

@@ -19,15 +19,15 @@ class CommentsController < ApplicationController
 
   def create
     the_comment = Comment.new
-    the_comment.trip_id = params.fetch("query_trip_id")
-    the_comment.user_id = params.fetch("query_user_id")
-    the_comment.content = params.fetch("query_content")
+    the_comment.trip_id = params.fetch("input_trip_id")
+    the_comment.user_id = params.fetch("input_owner_id")
+    the_comment.content = params.fetch("input_comment")
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments", { :notice => "Comment created successfully." })
+      redirect_to("/trips/#{the_comment.id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/comments", { :alert => the_comment.errors.full_messages.to_sentence })
+      redirect_to("/trips/#{the_comment.id}", { :alert => the_comment.errors.full_messages.to_sentence })
     end
   end
 
@@ -36,8 +36,8 @@ class CommentsController < ApplicationController
     the_comment = Comment.where({ :id => the_id }).at(0)
 
     the_comment.trip_id = params.fetch("query_trip_id")
-    the_comment.user_id = params.fetch("query_user_id")
-    the_comment.content = params.fetch("query_content")
+    the_comment.user_id = params.fetch("query_owner_id")
+    the_comment.content = params.fetch("query_comment")
 
     if the_comment.valid?
       the_comment.save

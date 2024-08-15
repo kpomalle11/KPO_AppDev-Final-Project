@@ -68,7 +68,7 @@ class TripsController < ApplicationController
     message_list = [
       {
         "role" => "system",
-        "content" => "You are a helpful travel assistant helping users plan a trip. Your task is to generate a complete travel itinerary in the form of a JSON object. Only return the JSON object, without any additional text or explanations. The JSON object should include these fields: arrival_date, departure_date, title, activity_id, and description. Please return the response in a JSON format like this:
+        "content" => "You are a helpful travel assistant helping users plan a trip. Your task is to generate a complete travel itinerary in the form of a JSON object. Only return the JSON object, without any additional text or explanations. Please focus the most on the description field of the JSON and fill it with multiple sentences, well laid out plans, and specific restaurants, activity, or trip detail. Use external links in the description field when appropriate. The JSON object should include these fields: arrival_date, departure_date, title, activity_id, and description. Please return the response in a JSON format like this:
         {
           \"arrival_date\": \"<arrival_date>\",
           \"departure_date\": \"<departure_date>\",
@@ -87,7 +87,7 @@ class TripsController < ApplicationController
       parameters: {
         model: "gpt-4",
         messages: message_list,
-        max_tokens: 500,
+        max_tokens: 600,
       },
     )
 
@@ -122,8 +122,6 @@ class TripsController < ApplicationController
 
     the_trip = Trip.find(params[:path_id])
     # trip_params = trip_params() # Using a method to fetch trip params
-
-    # trip_params = params[:trip] || params
 
     the_trip.owner_id = params[:query_owner_id]
     the_trip.description = params[:query_description]
