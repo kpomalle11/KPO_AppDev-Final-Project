@@ -22,8 +22,6 @@ class ActivitiesController < ApplicationController
     the_activity.activity_name = params.fetch("query_activity_name")
     the_activity.activity_description = params.fetch("query_activity_description")
     the_activity.location = params.fetch("query_location")
-    the_activity.day_start_time = params.fetch("query_day_start_time")
-    the_activity.day_end_time = params.fetch("query_day_end_time")
     the_activity.trip_id = params.fetch("query_trip_id")
 
     if the_activity.valid?

@@ -41,21 +41,7 @@
       </dd>
 
       <dt>
-        Day start time
-      </dt>
-      <dd>
-        <%= @the_activity.day_start_time %>
-      </dd>
-
-      <dt>
-        Day end time
-      </dt>
-      <dd>
-        <%= @the_activity.day_end_time %>
-      </dd>
-
-      <dt>
-        Trip
+        Trip #
       </dt>
       <dd>
         <%= @the_activity.trip_id %>
@@ -110,24 +96,6 @@
         </label>
 
         <input type="text" id="location_box" name="query_location" value="<%= @the_activity.location %>">
-      </div>
-
-      <div>
-        <label for="day_start_time_box">
-          Day start time
-        </label>
-
-        <input type="datetime-local" id="day_start_time_box" name="query_day_start_time"
-         value="<%= @the_activity.day_start_time %>">
-      </div>
-
-      <div>
-        <label for="day_end_time_box">
-          Day end time
-        </label>
-
-        <input type="datetime-local" id="day_end_time_box" name="query_day_end_time"
-         value="<%= @the_activity.day_end_time %>">
       </div>
 
       <div>
