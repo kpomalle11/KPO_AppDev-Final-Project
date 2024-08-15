@@ -1,0 +1,107 @@
+<h1>
+  My Trips
+</h1>
+
+<hr>
+
+<div>
+  <div>
+    <table class="table table-hover">
+      <tr>
+        <th>
+          Trip #
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Arrival date
+        </th>
+
+        <th>
+          Departure date
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Activity
+        </th>
+
+        <th>
+          Published
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_my_trips.each do |a_trip| %>
+        <tr>
+          <td>
+            <%= a_trip.id %>
+          </td>
+
+          <td>
+            <%= a_trip.owner.email %>
+          </td>
+
+          <td>
+            <%= a_trip.description %>
+          </td>
+
+          <td>
+            <%= a_trip.arrival_date %>
+          </td>
+
+          <td>
+            <%= a_trip.departure_date %>
+          </td>
+
+          <td>
+            <%= a_trip.title %>
+          </td>
+
+          <td>
+            <%= a_trip.activity %>
+          </td>
+
+          <td>
+            <%= a_trip.published %>
+          </td>
+
+          <td>
+            <%= time_ago_in_words(a_trip.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(a_trip.updated_at) %> ago
+          </td>
+
+          <td>
+            <a href="/trips/<%= a_trip.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

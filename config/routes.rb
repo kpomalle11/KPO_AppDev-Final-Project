@@ -54,6 +54,10 @@ Rails.application.routes.draw do
   # READ
   get("/trips", { :controller => "trips", :action => "index" })
 
+  get("/trips/mytrips", { :controller => "trips", :action => "user_trips" })
+
+  get("/trips/addtrip", { :controller => "trips", :action => "add_trip" })
+
   get("/trips/:path_id", { :controller => "trips", :action => "show" })
 
   # UPDATE

@@ -19,6 +19,21 @@ class TripsController < ApplicationController
     render({ :template => "trips/show" })
   end
 
+  def user_trips
+    matching_trips = Trip.where(owner_id: current_user.id) 
+    
+    @list_of_my_trips = matching_trips.order(created_at: :desc)
+
+    render(template: "/trips/mytrips")
+  end
+
+  
+  def add_trip
+
+    render(template: "/trips/addtrip")
+    
+  end
+
   def create
     the_trip = Trip.new
     the_trip.owner_id = params.fetch("query_owner_id")
