@@ -3,6 +3,7 @@
 # Table name: trips
 #
 #  id             :bigint           not null, primary key
+#  activity       :string
 #  arrival_date   :date
 #  departure_date :date
 #  description    :text

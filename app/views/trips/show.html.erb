@@ -62,7 +62,7 @@
         Activity
       </dt>
       <dd>
-        <%= @the_trip.activity_id %>
+        <%= @the_trip.activity %>
       </dd>
 
       <dt>
@@ -140,11 +140,11 @@
       </div>
 
       <div>
-        <label for="activity_id_box">
+        <label for="activity_box">
           Activity
         </label>
 
-        <input type="text" id="activity_id_box" name="query_activity_id" value="<%= @the_trip.activity_id %>">
+        <input type="text" id="activity_box" name="query_activity" value="<%= @the_trip.activity %>">
       </div>
 
       <div>

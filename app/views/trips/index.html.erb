@@ -41,8 +41,8 @@
       </div>
 
       <div>
-        <label for="activity_id_box">Activity</label>
-        <%= text_field_tag :query_activity_id, nil, id: "activity_id_box" %>
+        <label for="activity_box">Activity</label>
+        <%= text_field_tag :query_activity, nil, id: "activity_box" %>
       </div>
 
       <div>
@@ -113,7 +113,7 @@
           </td>
 
           <td>
-            <%= a_trip.owner_id %>
+            <%= a_trip.owner.email %>
           </td>
 
           <td>
@@ -133,7 +133,7 @@
           </td>
 
           <td>
-            <%= a_trip.activity_id %>
+            <%= a_trip.activity %>
           </td>
 
           <td>

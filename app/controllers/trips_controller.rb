@@ -26,7 +26,7 @@ class TripsController < ApplicationController
     the_trip.arrival_date = params.fetch("query_arrival_date")
     the_trip.departure_date = params.fetch("query_departure_date")
     the_trip.title = params.fetch("query_title")
-    the_trip.activity_id = params.fetch("query_activity_id")
+    the_trip.activity = params.fetch("query_activity")
     the_trip.published = params.fetch("query_published", false)
 
     if the_trip.valid?
@@ -44,7 +44,7 @@ class TripsController < ApplicationController
       arrival_date: params[:query_arrival_date],
       departure_date: params[:query_departure_date],
       title: params[:query_title],
-      activity_id: params[:query_activity_id],
+      activity: params[:query_activity],
       published: params[:query_published].present?,
     }
 
@@ -58,7 +58,7 @@ class TripsController < ApplicationController
           \"arrival_date\": \"<arrival_date>\",
           \"departure_date\": \"<departure_date>\",
           \"title\": \"<title>\",
-          \"activity_id\": \"<activity_id>\",
+          \"activity\": \"<activity>\",
           \"description\": \"<description>\"
         }.",
       },
@@ -94,7 +94,7 @@ class TripsController < ApplicationController
       arrival_date: parsed_response["arrival_date"],
       departure_date: parsed_response["departure_date"],
       title: parsed_response["title"],
-      activity_id: parsed_response["activity_id"],
+      activity: parsed_response["activity"],
       published: false,  # Set to false by default, the user can publish later
     )
 
@@ -103,17 +103,20 @@ class TripsController < ApplicationController
   end
 
   def update
-    the_trip = Trip.find(params[:path_id])
+    # Rails.logger.debug "Received params: #{params.inspect}" # Log to see what params are received
 
-    the_trip.update(
-      owner_id: params[:trip][:owner_id],
-      description: params[:trip][:description],
-      arrival_date: params[:trip][:arrival_date],
-      departure_date: params[:trip][:departure_date],
-      title: params[:trip][:title],
-      activity_id: params[:trip][:activity_id],
-      published: params[:trip][:published],
-    )
+    the_trip = Trip.find(params[:path_id])
+    # trip_params = trip_params() # Using a method to fetch trip params
+
+    # trip_params = params[:trip] || params
+
+    the_trip.owner_id = params[:query_owner_id]
+    the_trip.description = params[:query_description]
+    the_trip.arrival_date = params[:query_arrival_date]
+    the_trip.departure_date = params[:query_departure_date]
+    the_trip.title = params[:query_title]
+    the_trip.activity_id = params[:query_activity]
+    the_trip.published = params[:query_published]
 
     if the_trip.valid?
       the_trip.save
